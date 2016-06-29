@@ -12,6 +12,6 @@
 
 @property (nonatomic)NSNumber *faceValue;
 
-- (NSNumber*)rollDie;
+- (void)rollDie;
 
 @end

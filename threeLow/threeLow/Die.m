@@ -19,10 +19,9 @@
     return self;
 }
 
-- (NSNumber*)rollDie {
+- (void)rollDie {
     NSUInteger random = arc4random_uniform(5) + 1;
     self.faceValue = [NSNumber numberWithInteger:random];
-    return self.faceValue;
 }
 
 @end
