@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Die.h"
+#import "InputCollector.h"
+
+#define MENU_STRING @"Type \"roll\" to roll the dice\nType \"q\" to quit:"
+
+void rollAllAndShow(NSArray *array) {
+    for (Die *d in array) {
+        [d rollDie];
+        NSLog(@"face Value: %@", d.faceValue);
+    }
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -18,11 +28,23 @@ int main(int argc, const char * argv[]) {
         Die *die5 = [[Die alloc] init];
         
         NSArray *array = @[die1, die2, die3, die4, die5];
+        InputCollector *inputCollector = [[InputCollector alloc] init];
         
-        for (Die *d in array) {
-            [d rollDie];
-            NSLog(@"face Value: %@", d.faceValue);
+        rollAllAndShow(array);
+        
+        NSString *userInput;
+        
+        while (![userInput isEqualToString:@"q"]) {
+            userInput = [inputCollector inputForPrompt:MENU_STRING];
+            
+            if ([userInput isEqualToString:@"q"]) {
+                break;
+            } else if ([userInput isEqual:@"roll"]) {
+                rollAllAndShow(array);
+            }
         }
+        
+        
         
     }
     return 0;
