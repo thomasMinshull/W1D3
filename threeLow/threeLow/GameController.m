@@ -55,6 +55,19 @@
             NSLog(@"Face Value: %@", d.faceValue);
         }
     }
+    
+    NSLog(@"Score: %i", [self score]);
+    
+}
+
+- (int)score {
+    int score = 0;
+    for (Die *d in self.heldDice.heldDice) {
+        if ([d.faceValue intValue] != 3) {
+            score = score + [d.faceValue intValue];
+        }
+    }
+    return score;
 }
 
 @end
