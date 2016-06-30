@@ -15,6 +15,7 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
         GameController *gameController = [[GameController alloc] init];
         InputCollector *inputCollector = [[InputCollector alloc] init];
         
