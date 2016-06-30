@@ -25,7 +25,13 @@
 - (void)holdDie:(int) die {
     if (die < self.dice.array.count) {
         Die *selectedDie = self.dice.array[die];
-        [self.heldDice.heldDice addObject:selectedDie];
+        NSMutableSet *set = self.heldDice.heldDice;
+        
+        if ([set containsObject:selectedDie]) {
+            [set removeObject:selectedDie];
+        } else {
+            [set addObject:selectedDie];
+        }
     }
 }
 

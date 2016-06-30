@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
                     
                     if (NumberRespondedWith && [NumberRespondedWith integerValue] <= [gameController.dice.array count] && [NumberRespondedWith integerValue] != 0) { // nil check
                         [gameController holdDie:(((int)[NumberRespondedWith integerValue]) - 1)];
-                        NSLog(@"I've held die %i", (int)[NumberRespondedWith integerValue]);
+                        NSLog(@"As you wish! I've change die %i", (int)[NumberRespondedWith integerValue]);
                     } else  if (![userResponse isEqualToString:@"d"]){
                         NSLog(@"WFT? that wasn't an option");
                     }
