@@ -11,7 +11,7 @@
 #import "InputCollector.h"
 
 #define MENU_STRING @"Type \"roll\" to roll the dice\nType \"q\" to quit:"
-#define SELECT_DICE_TO_HOLD @"type the number of the die, you would like to hold. Type \"d\" when you are done:"
+#define SELECT_DICE_TO_HOLD @"type the number of the die, you would like to hold.\n Type \"reset\" to restart.\n Type \"d\" when you are done:"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -38,6 +38,8 @@ int main(int argc, const char * argv[]) {
                     if (NumberRespondedWith && [NumberRespondedWith integerValue] <= [gameController.dice.array count] && [NumberRespondedWith integerValue] != 0) { // nil check
                         [gameController holdDie:(((int)[NumberRespondedWith integerValue]) - 1)];
                         NSLog(@"As you wish! I've change die %i", (int)[NumberRespondedWith integerValue]);
+                    } else if ([userResponse isEqualToString:@"reset"]) {
+                        [gameController resetDice];
                     } else  if (![userResponse isEqualToString:@"d"]){
                         NSLog(@"WFT? that wasn't an option");
                     }

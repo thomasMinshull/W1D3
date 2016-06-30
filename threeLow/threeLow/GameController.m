@@ -43,6 +43,10 @@
     }
 }
 
+- (void)resetDice {
+    [self.heldDice.heldDice removeAllObjects];
+}
+
 - (void)printFaceValues {
     for (Die *d in self.dice.array) {
         if ([self.heldDice.heldDice containsObject:d]) {

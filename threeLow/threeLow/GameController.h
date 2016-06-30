@@ -18,5 +18,6 @@
 - (void)holdDie:(int) die;
 - (void)rollDice;
 - (void)printFaceValues;
+- (void)resetDice;
 
 @end
