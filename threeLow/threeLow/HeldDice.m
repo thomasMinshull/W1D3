@@ -10,4 +10,14 @@
 
 @implementation HeldDice
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.heldDice = [[NSMutableSet alloc] init];
+    }
+    
+    return self;
+}
+
 @end

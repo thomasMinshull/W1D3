@@ -11,21 +11,16 @@
 #import "InputCollector.h"
 
 #define MENU_STRING @"Type \"roll\" to roll the dice\nType \"q\" to quit:"
-
-//void rollAllAndShow(NSArray *array) {
-//    for (Die *d in array) {
-//        [d rollDie];
-//        NSLog(@"face Value: %@", d.faceValue);
-//    }
-//}
+#define SELECT_DICE_TO_HOLD @"type the number of the die, you would like to hold. Type \"d\" when you are done:"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         GameController *gameController = [[GameController alloc] init];
         InputCollector *inputCollector = [[InputCollector alloc] init];
-//        Dice *dice = [[Dice alloc] init];
         
         NSString *userInput;
+        
+        [gameController rollDice];
         
         while (![userInput isEqualToString:@"q"]) {
             userInput = [inputCollector inputForPrompt:MENU_STRING];
@@ -33,7 +28,21 @@ int main(int argc, const char * argv[]) {
             if ([userInput isEqualToString:@"q"]) {
                 break;
             } else if ([userInput isEqual:@"roll"]) {
+                [gameController rollDice];
                 [gameController printFaceValues];
+                NSString *userResponse;
+                while (![userResponse isEqualToString:@"d"]) {
+                    userResponse = [inputCollector inputForPrompt:SELECT_DICE_TO_HOLD];
+                    NSNumber *NumberRespondedWith = [NSNumber numberWithInt:(int)[userResponse integerValue]];
+                    
+                    if (NumberRespondedWith && [NumberRespondedWith integerValue] <= [gameController.dice.array count] && [NumberRespondedWith integerValue] != 0) { // nil check
+                        [gameController holdDie:(((int)[NumberRespondedWith integerValue]) - 1)];
+                        NSLog(@"I've held die %i", (int)[NumberRespondedWith integerValue]);
+                    } else  if (![userResponse isEqualToString:@"d"]){
+                        NSLog(@"WFT? that wasn't an option");
+                    }
+                }
+                
             } else {
                 NSLog(@"Sorry I didn't understand that selection");
             }

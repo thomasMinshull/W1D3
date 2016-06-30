@@ -39,7 +39,11 @@
 
 - (void)printFaceValues {
     for (Die *d in self.dice.array) {
-        NSLog(@"Face Value: %@", d.faceValue);
+        if ([self.heldDice.heldDice containsObject:d]) {
+            NSLog(@"Face Value: [%@]", d.faceValue);
+        } else {
+            NSLog(@"Face Value: %@", d.faceValue);
+        }
     }
 }
 
